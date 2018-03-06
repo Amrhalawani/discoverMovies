@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<MovieModel> list;
     RecyclerAdaptor recyclerAdaptor;
-    // public static String url = "http://api.themoviedb.org/3/movie/popular?api_key=7dc3c3d78e52290fbaaca09a7fb34436";
+
     public static final String base_url = "http://api.themoviedb.org/3/";
     public static final String end_point_popular = "movie/popular";
     public static final String end_point_top_rated = "movie/top_rated";
-    public static final String api_key = "7dc3c3d78e52290fbaaca09a7fb34436";
+    public static final String api_key = ""; // type your api key here
     //http://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg
     public static String pic_base_url = "http://image.tmdb.org/t/p/";
     public static String pic_size_url = "w185";
