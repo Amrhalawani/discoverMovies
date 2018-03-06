@@ -1,7 +1,7 @@
 package amrhal.example.com.discovermovies;
 
 /**
- * Created by Amr hal on 28/02/2018.
+ * Created by Amr hal on 3/03/2018.
  */
 
 public class MovieModel {

@@ -27,7 +27,7 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+    private TextView mJsonContentTV;
     RecyclerView recyclerView;
     List<MovieModel> list;
     RecyclerAdaptor recyclerAdaptor;
@@ -53,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
                     getjson(end_point_popular);
                     if (list.isEmpty()) {
                         recyclerView.setVisibility(View.GONE);
-                        mTextMessage.setVisibility(View.VISIBLE);
+                        mJsonContentTV.setVisibility(View.VISIBLE);
                         Log.e("tag", "list.isEmpty()= "+ list.isEmpty() );
                     }
                     else {
                         recyclerView.setVisibility(View.VISIBLE);
-                        mTextMessage.setVisibility(View.GONE);
+                        mJsonContentTV.setVisibility(View.GONE);
                         Log.e("tag", "list.isEmpty()="+ list.isEmpty() );
                     }
                     return true;
@@ -67,12 +67,12 @@ public class MainActivity extends AppCompatActivity {
                     getjson(end_point_top_rated);
                     if (list.isEmpty()) {
                         recyclerView.setVisibility(View.GONE);
-                        mTextMessage.setVisibility(View.VISIBLE);
+                        mJsonContentTV.setVisibility(View.VISIBLE);
                         Log.e("tag", "list.isEmpty()="+ list.isEmpty() );
                     }
                     else {
                         recyclerView.setVisibility(View.VISIBLE);
-                        mTextMessage.setVisibility(View.GONE);
+                        mJsonContentTV.setVisibility(View.GONE);
                         Log.e("tag", "list.isEmpty()="+ list.isEmpty() );
                     }
                     return true;
@@ -96,22 +96,25 @@ public class MainActivity extends AppCompatActivity {
         recyclerAdaptor = new RecyclerAdaptor(list, getApplicationContext());
         recyclerView.setAdapter(recyclerAdaptor);
         recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
-        mTextMessage = (TextView) findViewById(R.id.message1);
+        mJsonContentTV = (TextView) findViewById(R.id.jsonContentID);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        list = Util.parseJson(getjson(end_point_popular));
+
+        list = Util.parseJson(allJsonContent); // hey, here is the problem allJsonContent (retrofit Response) is empty and i ca't access to it outside the inner class "Callback<ResponseBody> onResponse " take alook at line 126
+
        // list.add(new MovieModel("dasdasd","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbGMMqoY48zQQ9xQP0G8J5c_7x5DZIRR0DKFEGi9SUwqN3mkLj"));
         recyclerAdaptor.notifyDataSetChanged();
 
 
-        Log.e("tag", "list length "+ list.size());
+        Log.e("tag", "list size "+ list.size());
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        Log.e("TAG", "onCreate: "+ "allJsonContent = " +allJsonContent);
     }
 
 
 
 
     public String getjson(String endPoint) {
-        final String[] retrofitResponse = {""};
+
 
         final Retrofit retrofit = new Retrofit.Builder().baseUrl(base_url).build();
         MoviesInterface m = retrofit.create(MoviesInterface.class);
@@ -119,24 +122,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
-                    retrofitResponse[0] = response.body().string();
-                    mTextMessage.setText(response.body().string());
+
+                    allJsonContent = response.body().string();
+                    mJsonContentTV.setText(allJsonContent);
                     Log.e("TAG", " retrofit onResponse: working well ");
 
                 } catch (IOException e) {
                     Log.e("TAG", " retrofit onResponse:  response error and catch -> "+ e.getLocalizedMessage());
                     e.printStackTrace();
                 }
+
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e("TAG", "****** retrofit onFailure ******** ");
-                mTextMessage.setText("Error Retrofit onFailure");
 
+                Log.e("TAG", "****** retrofit onFailure ******** ");
+                mJsonContentTV.setText("Error Retrofit onFailure");
             }
         });
 
-        return retrofitResponse[0];
+        return allJsonContent;
     }
 }

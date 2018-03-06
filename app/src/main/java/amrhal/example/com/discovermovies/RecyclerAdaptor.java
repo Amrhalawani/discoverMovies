@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 /**
- * Created by Amr hal on 28/02/2018.
+ * Created by Amr hal on 3/03/2018.
  */
 
 public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.myViewholder> {
@@ -33,7 +33,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.myView
     public myViewholder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = layoutInflater.inflate(R.layout.item_list, parent,false);
+        View v = layoutInflater.inflate(R.layout.item_list, parent, false);
         myViewholder myViewholder = new myViewholder(v);
 
         return myViewholder;
@@ -41,10 +41,10 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.myView
 
     @Override
     public void onBindViewHolder(myViewholder holder, int position) {
-
+//"http://i.imgur.com/DvpvklR.png"
         MovieModel movieModel = list.get(position);
 
-       // Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(holder.imageView);
+        Picasso.with(context).load(movieModel.getPosterUrl()).into(holder.imageView);
         holder.textView.setText(movieModel.getTitle());
         Log.e("tag", "on bind ");
 //todo onbind
