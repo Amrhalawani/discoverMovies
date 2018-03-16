@@ -24,14 +24,11 @@ public class Util {
     public static List<MovieModel> parseJson(String json) {
         List<MovieModel> listOfMovies = new ArrayList<>();
         try {
-            if (json.isEmpty()){
-                Log.e("tag", "Content of String json is Empty ******");
-            }
 
             JSONObject jsonobj = new JSONObject(json);
-            Log.e("tag", "********" );
+
             JSONArray resultJsonArray = jsonobj.getJSONArray(Results_jsonArray);
-            Log.e("tag", "***********" );
+
             for (int i = 0; i < resultJsonArray.length(); i++) {
 
                 JSONObject jsonObject = (JSONObject) resultJsonArray.get(i);
@@ -41,14 +38,17 @@ public class Util {
                 posterUrl = pic_base_url + pic_size_url + posterPath;
                 MovieModel movieModel = new MovieModel(movieName, posterUrl);
                 listOfMovies.add(movieModel);
-                Log.e("tag", movieName + "  " + posterUrl);
+
             }
+            Log.e("tag", "util.class list.size="+ listOfMovies.size() );
+            return listOfMovies;
 
         } catch (JSONException e) {
             e.printStackTrace();
             Log.e("tag", "******Error in parsing = "+e.getLocalizedMessage()+"******* " +  e.getMessage() );
         }
 
-        return listOfMovies;
+        return null;
+
     }
 }

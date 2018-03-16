@@ -6,12 +6,4 @@
         android:icon="@drawable/ic_trending_up_black_24dp"
         android:title="@string/popularity" />
 
-    <item
-        android:id="@+id/top_ratedID"
-        android:icon="@drawable/ic_top_rated"
-        android:title="@string/top_rated"
-
-        />
-
-
 </menu>

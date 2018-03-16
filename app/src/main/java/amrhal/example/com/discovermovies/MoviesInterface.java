@@ -7,10 +7,14 @@ import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 /**
- * Created by Amr hal on 03/03/2018.
+ * Created by Amr hal on 14/03/2018.
  */
+
 public interface MoviesInterface {
-    @GET()
-    Call<ResponseBody> getMovies(@Url String endPoint, @Query("api_key") String apiKey);
+    @GET("movie/popular")
+    Call<ResponseBody> getPopularMovies(@Query("api_key") String apiKey);
+
+    @GET("movie/top_rated")
+    Call<ResponseBody> getTopRatedMovies(@Query("api_key") String apiKey);
 
 }
