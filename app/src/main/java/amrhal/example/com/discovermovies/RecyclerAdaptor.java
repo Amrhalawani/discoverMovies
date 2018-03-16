@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -19,24 +20,25 @@ import java.util.List;
  */
 
 public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.myViewholder> {
-    private static final String TAG ="TAG" ;
-    List<MovieModel> list  = new ArrayList<>();
+    private static final String TAG = "TAG";
+    List<MovieModel> list = new ArrayList<>();
     Context context;
     LayoutInflater layoutInflater;
+    public OnItemClickListener onItemClickListener;
 
 
-    public RecyclerAdaptor( Context context ) {
+    public RecyclerAdaptor(Context context) {
 
         this.context = context;
-        Log.e(TAG, "RecyclerAdaptor: " + "context is "+ context.getClass().toString() + " / list size is "+ list.size());
-      //  layoutInflater = LayoutInflater.from(context);
+        Log.e(TAG, "RecyclerAdaptor: " + "context is " + context.getClass().toString() + " / list size is " + list.size());
+        //  layoutInflater = LayoutInflater.from(context);
     }
 
     @Override
     public myViewholder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.e(TAG, "onCreateViewHolder: ");
 
-         layoutInflater = LayoutInflater.from(parent.getContext());
+        layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item_list, parent, false);
 
         myViewholder myViewholder = new myViewholder(view);
@@ -56,15 +58,12 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.myView
                 .into(holder.imageView);
 
         Log.e("tag", "on bind ");
-//todo onbind
-
-
     }
 
 
     @Override
     public int getItemCount() {
-        Log.e(TAG, "getItemCount: list.size = "+ list.size());
+        Log.e(TAG, "getItemCount: list.size = " + list.size());
         return list.size();
     }
 
@@ -73,19 +72,31 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.myView
         notifyDataSetChanged();
     }
 
-    //------------------------------------------------------------------------------------------------------------------------------------------
-    class myViewholder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------
+    class myViewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        ImageView imageView;
 
 
         public myViewholder(View itemView) {
             super(itemView);
             Log.e(TAG, "myViewholder: ");
             imageView = itemView.findViewById(R.id.movieposterIV_ID);
-
+            imageView.setOnClickListener(this);
 
         }
 
+        @Override
+        public void onClick(View view) {
+            if (onItemClickListener != null)
+                onItemClickListener.onItemClick(getAdapterPosition());
+        }
     }
+
 }

@@ -8,11 +8,18 @@ public class MovieModel {
     //title, release date, movie poster, vote average, and plot synopsis.
     String title;
     String posterUrl;
+    String releaseDate;
+    int voteAverage;
+    String synopsis;
 
-//    String releaseDate;
-//    int voteAverage;
-//    String synopsis;
-//
+    public MovieModel(String title, String posterUrl, String releaseDate, int voteAverage, String synopsis) {
+        this.title = title;
+        this.posterUrl = posterUrl;
+        this.releaseDate = releaseDate;
+        this.voteAverage = voteAverage;
+        this.synopsis = synopsis;
+    }
+
 
     public MovieModel(String title, String posterUrl) {
         this.title = title;
@@ -31,9 +38,27 @@ public class MovieModel {
         return posterUrl;
     }
 
-    public void setPosterUrl(String posterUrl) {
-        this.posterUrl = posterUrl;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
 
+    public int getVoteAverage() {
+        return voteAverage;
+    }
+
+    public void setVoteAverage(int voteAverage) {
+        this.voteAverage = voteAverage;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
+    }
 }

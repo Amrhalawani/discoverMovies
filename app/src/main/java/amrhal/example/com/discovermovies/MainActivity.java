@@ -1,5 +1,6 @@
 package amrhal.example.com.discovermovies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -13,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -56,12 +58,12 @@ public class MainActivity extends AppCompatActivity {
     Button btnRetry;
     TextView connectTointernetTV;
     public static final String base_url = "http://api.themoviedb.org/3/";
-    public static final String api_key = "";
+    public static final String api_key = "7dc3c3d78e52290fbaaca09a7fb34436";     //TODO type your api key here
     public static String pic_base_url = "http://image.tmdb.org/t/p/";
     public static String pic_size_url = "w185";
     public static String pic_path = ""; //like ( nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg )
 
-
+    //http://api.themoviedb.org/3/movie/popular/7dc3c3d78e52290fbaaca09a7fb34436
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -105,36 +107,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        try {
-            NetworkConnection.connectToInternet();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         connectTointernetTV = findViewById(R.id.emptyViewID);
         btnRetry = findViewById(R.id.button);
         list = new ArrayList<>();
-        if (list.isEmpty()) {
-            connectTointernetTV.setVisibility(View.VISIBLE);
-            btnRetry.setVisibility(View.VISIBLE);
-        }
+
 
         recyclerView = findViewById(R.id.recyclerviewID);
 
-
-//        Log.e(TAG, "onCreate: RecyclerAdaptor(main this, list) list size "+ list.size() );
-//        recyclerView.setAdapter(recyclerAdaptor);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));//new GridLayoutManager(MainActivity.this, 2)  new LinearLayoutManager(getApplicationContext())
-
-
         BottomNavigationView navigation = findViewById(R.id.navigation);
-
-        // hey, here is the problem allJsonContent (retrofit Response) is empty and i ca't access to it outside the inner class "Callback<ResponseBody> onResponse " take alook at line 126
-
-        // list.add(new MovieModel("dasdasd","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbGMMqoY48zQQ9xQP0G8J5c_7x5DZIRR0DKFEGi9SUwqN3mkLj"));
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         getPopularMovies();
-        Log.e(TAG, "onCreate: list size="+list.size());
+        Log.e(TAG, "onCreate: list size=" + list.size());
+        if (list.isEmpty()) {
+            Log.e(TAG, "on Create (for visibility) when list.is empty= " + list.isEmpty());
+            connectTointernetTV.setVisibility(View.VISIBLE);
+            btnRetry.setVisibility(View.VISIBLE);
+        }
 
 
     }
@@ -162,7 +152,17 @@ public class MainActivity extends AppCompatActivity {
                         Log.e(TAG, "retrofit onResponse: list size = " + list.size());
                         connectTointernetTV.setVisibility(View.INVISIBLE);
                         btnRetry.setVisibility(View.INVISIBLE);
+                        //MovieModel movieModel = list.get(0);
 
+                        recyclerAdaptor.setOnItemClickListener(new RecyclerAdaptor.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+                                Toast.makeText(MainActivity.this, "Clicked on Pos " + position, Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+                                intent.putExtra(DetailsActivity.EXTRA_POSITION, position);
+                                startActivity(intent);
+                            }
+                        });
 
                     } else {
                         Log.e(TAG, "Retrofit onResponse: response.body() = null");
@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMassege(EventMassege event) {
-//        Toast.makeText(MainActivity.this, event.message, Toast.LENGTH_SHORT).show();
+
         final Snackbar mysnackbar = Snackbar.make(findViewById(R.id.container), event.message,
                 Snackbar.LENGTH_INDEFINITE);
 
@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mysnackbar.dismiss();
-                getTopRatedMovies();
+                getPopularMovies();
             }
         })
                 .show();

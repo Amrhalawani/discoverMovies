@@ -69,7 +69,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
-        android:text="test eventbus"
+        android:text="Retry"
         android:onClick="testEventBus"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/emptyViewID"
