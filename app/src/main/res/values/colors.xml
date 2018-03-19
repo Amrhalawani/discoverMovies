@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3e3e3e</color>
-    <color name="colorPrimaryDark">#20d766</color>
-    <color name="colorAccent">#ff7ea9</color>
-    <color name="tab_enable">#43d0eb</color>
-    <color name="tab_disable">#29808f</color>
+    <color name="colorPrimary">#2c2c43</color>
+    <color name="colorPrimaryDark">#2d2d2d</color>
+    <color name="colorAccent">#ffe14e</color>
+    <color name="tab_enable">#ffe14e</color>
+    <color name="tab_disable">#807b50</color>
+    <color name="white">#fffbe6</color>
+    <color name="off">#c1bfb5</color>
+    <color name="gradiant_start">#2d2c24</color>
+    <color name="gradiant_end">#3b3b58</color>
 </resources>
+
+<!--<color name="colorPrimary">#303030</color>-->
+<!--<color name="colorPrimaryDark">#2d2d2d</color>-->
+<!--<color name="colorAccent">#ff7ea9</color>-->
+<!--<color name="tab_enable">#43d0eb</color>-->
+<!--<color name="tab_disable">#29808f</color>-->
+<!--<color name="white">#d4d6b9</color>-->
+<!--<color name="offwhite">#d1caa1</color>-->
+<!--<color name="gradiant_start">#66717e</color>-->
+

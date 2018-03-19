@@ -21,7 +21,7 @@ public class Util {
     public static String pic_size_url = "w185";
     static String posterUrl;
 
-    public static List<MovieModel> parseJson(String json) {
+    public static List<MovieModel> parseJsonCTList(String json) {
         List<MovieModel> listOfMovies = new ArrayList<>();
         try {
 
@@ -40,15 +40,47 @@ public class Util {
                 listOfMovies.add(movieModel);
 
             }
-            Log.e("tag", "util.class list.size="+ listOfMovies.size() );
+            Log.e("tag", "util.class list.size=" + listOfMovies.size());
             return listOfMovies;
 
         } catch (JSONException e) {
             e.printStackTrace();
-            Log.e("tag", "******Error in parsing = "+e.getLocalizedMessage()+"******* " +  e.getMessage() );
+            Log.e("tag", "******Error in parsing = " + e.getLocalizedMessage() + "******* " + e.getMessage());
         }
 
         return null;
 
+    }
+
+    public static MovieModel parsejsonCTmovieObject(String json, int position) {
+
+
+        try {
+
+
+            JSONObject jsonobj = new JSONObject(json);
+
+            JSONArray resultJsonArray = jsonobj.getJSONArray(Results_jsonArray);
+
+            JSONObject jsonObject = (JSONObject) resultJsonArray.get(position);
+
+            String movieName = jsonObject.getString(movieTitle);
+            String movieAvg = jsonObject.getString("vote_average");
+            String movieReleasDate = jsonObject.getString("release_date").substring(0,7);
+
+            String movieOverview = jsonObject.getString("overview");
+            String posterPath = jsonObject.getString("poster_path");
+            posterUrl = pic_base_url + pic_size_url + posterPath;
+            Log.e("TAG", "parsejsonCTmovieObject: " + movieName + "." + movieReleasDate + "." +movieAvg + "." + movieOverview);
+            MovieModel movieModel = new MovieModel(movieName, posterUrl, movieReleasDate, movieAvg, movieOverview);
+
+            return movieModel;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("tag", "******Error in parsing = " + e.getLocalizedMessage() + "******* " + e.getMessage());
+        }
+
+        return new MovieModel("", "", "", "", "");
     }
 }

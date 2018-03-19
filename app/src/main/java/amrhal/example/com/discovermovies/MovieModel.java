@@ -9,10 +9,10 @@ public class MovieModel {
     String title;
     String posterUrl;
     String releaseDate;
-    int voteAverage;
+    String voteAverage;
     String synopsis;
 
-    public MovieModel(String title, String posterUrl, String releaseDate, int voteAverage, String synopsis) {
+    public MovieModel(String title, String posterUrl, String releaseDate, String voteAverage, String synopsis) {
         this.title = title;
         this.posterUrl = posterUrl;
         this.releaseDate = releaseDate;
@@ -46,11 +46,11 @@ public class MovieModel {
         this.releaseDate = releaseDate;
     }
 
-    public int getVoteAverage() {
+    public String getVoteAverage() {
         return voteAverage;
     }
 
-    public void setVoteAverage(int voteAverage) {
+    public void setVoteAverage(String voteAverage) {
         this.voteAverage = voteAverage;
     }
 

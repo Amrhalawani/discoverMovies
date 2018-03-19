@@ -2,5 +2,6 @@
     <string name="app_name">Discover movies</string>
     <string name="popularity">Popularity</string>
     <string name="top_rated">Top Rated</string>
-    <string name="trying_to_connect_to_internet">trying to Connect to internet...</string>
+    <string name="trying_to_connect_to_internet">trying to Connect to internet…, &#8230;</string>
+    <string name="lorem_ipsem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to </string>
 </resources>
