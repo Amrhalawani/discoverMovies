@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnRetry;
     TextView connectTointernetTV;
     public static final String base_url = "http://api.themoviedb.org/3/";
-    public static final String api_key = "";     //TODO type your api key here
+    public static final String api_key = "7dc3c3d78e52290fbaaca09a7fb34436";     //TODO type your api key here
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
