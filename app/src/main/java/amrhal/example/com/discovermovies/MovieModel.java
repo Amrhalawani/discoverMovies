@@ -50,9 +50,7 @@ public class MovieModel {
         return voteAverage;
     }
 
-    public void setVoteAverage(String voteAverage) {
-        this.voteAverage = voteAverage;
-    }
+
 
     public String getSynopsis() {
         return synopsis;

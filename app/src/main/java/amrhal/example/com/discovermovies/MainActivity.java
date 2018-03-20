@@ -38,8 +38,6 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "TAG";
-    private TextView mJsonContentTV;
-    private String jsonContent = "";
     RecyclerView recyclerView;
     List<MovieModel> list;
     RecyclerAdaptor recyclerAdaptor;
@@ -150,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                                 intent.putExtra(DetailsActivity.EXTRA_OVERVIEW, movieModel.getSynopsis());
                                 startActivity(intent);
 
-                                //  EventBus.getDefault().post(movieModel);//Todo here eventBus didn't work duo to lifecycle of detailactivity
+                                //  EventBus.getDefault().post(movieModel);//Todo here eventBus didn't work due to lifecycle of detailactivity
                                 // String s = "http://www.mechanicalboss.com/wp-content/uploads/2016/07/MECHANICAL_BOSS_Logo_2016_Def_SquareVer_A.jpg";
                                 // EventBus.getDefault().post(new MovieModel("The Show", s, "13/05/2013", "7.9", "بسم الله الرحمن الرحيم ، تيست تيست تيست تيست"));
                             }
