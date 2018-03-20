@@ -7,15 +7,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.squareup.picasso.Picasso;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 import amrhal.example.com.discovermovies.Eventbustest.EventMassege;
-
 public class DetailsActivity extends AppCompatActivity {
 
     public static String EXTRA_POSITION = "position";
@@ -36,7 +32,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details_layout);
         EventBus.getDefault().register(this);
-        //TODO here get the intent (from 163 line MainActivity)and parse json from util by it's positions movie = list.get[position]
+
         pos = getIntent().getExtras().getInt(EXTRA_POSITION);
         movieTitleTV = findViewById(R.id.title);
         movieAvgTV = findViewById(R.id.avarege);
@@ -54,7 +50,6 @@ public class DetailsActivity extends AppCompatActivity {
         avg = getIntent().getExtras().getString(EXTRA_AVG);
         date = getIntent().getExtras().getString(EXTRA_DATE);
         overview = getIntent().getExtras().getString(EXTRA_OVERVIEW);
-
         movieTitleTV.setText(title);
         Picasso.get()
                 .load(poster)

@@ -47,12 +47,8 @@ public class MainActivity extends AppCompatActivity {
     Button btnRetry;
     TextView connectTointernetTV;
     public static final String base_url = "http://api.themoviedb.org/3/";
-    public static final String api_key = "7dc3c3d78e52290fbaaca09a7fb34436";     //TODO type your api key here
-    public static String pic_base_url = "http://image.tmdb.org/t/p/";
-    public static String pic_size_url = "w185";
-    public static String pic_path = ""; //like (nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg)
+    public static final String api_key = "";     //TODO type your api key here
 
-    //http://api.themoviedb.org/3/movie/popular/7dc3c3d78e52290fbaaca09a7fb34436
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -114,13 +110,10 @@ public class MainActivity extends AppCompatActivity {
             connectTointernetTV.setVisibility(View.VISIBLE);
             btnRetry.setVisibility(View.VISIBLE);
         }
-
-
     }
 
 
     public void getPopularMovies() {
-
 
         final Retrofit retrofit = new Retrofit.Builder().baseUrl(base_url).build();
         MoviesInterface moviesInterface = retrofit.create(MoviesInterface.class);
@@ -128,10 +121,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
-
                     if (response.body() != null) {
                         final String JsonBody = response.body().string();
-
 
                         recyclerAdaptor = new RecyclerAdaptor(MainActivity.this);
                         recyclerView.setAdapter(recyclerAdaptor);
@@ -146,8 +137,7 @@ public class MainActivity extends AppCompatActivity {
                         recyclerAdaptor.setOnItemClickListener(new RecyclerAdaptor.OnItemClickListener() {
                             @Override
                             public void onItemClick(int position) {
-                                Toast.makeText(MainActivity.this, "Clicked on Pos " + position, Toast.LENGTH_LONG).show();
-
+                                //  Toast.makeText(MainActivity.this, "Clicked on Pos " + position, Toast.LENGTH_LONG).show();
                                 MovieModel movieModel = Util.parsejsonCTmovieObject(JsonBody, position);
                                 Log.e(TAG, "main onItemClick: movieModel.getTitle()=" + movieModel.getTitle());
 
@@ -160,8 +150,8 @@ public class MainActivity extends AppCompatActivity {
                                 intent.putExtra(DetailsActivity.EXTRA_OVERVIEW, movieModel.getSynopsis());
                                 startActivity(intent);
 
-                                //  EventBus.getDefault().post(movieModel);//Todo here eventBus didn't work
-                                // String s = "http://img.youm7.com/large/201610070429332933.jpg";
+                                //  EventBus.getDefault().post(movieModel);//Todo here eventBus didn't work duo to lifecycle of detailactivity
+                                // String s = "http://www.mechanicalboss.com/wp-content/uploads/2016/07/MECHANICAL_BOSS_Logo_2016_Def_SquareVer_A.jpg";
                                 // EventBus.getDefault().post(new MovieModel("The Show", s, "13/05/2013", "7.9", "بسم الله الرحمن الرحيم ، تيست تيست تيست تيست"));
                             }
                         });
@@ -208,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                         recyclerAdaptor.setOnItemClickListener(new RecyclerAdaptor.OnItemClickListener() {
                             @Override
                             public void onItemClick(int position) {
-                                Toast.makeText(MainActivity.this, "Clicked on Pos " + position, Toast.LENGTH_LONG).show();
+                                //   Toast.makeText(MainActivity.this, "Clicked on Pos " + position, Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
                                 MovieModel movieModel = Util.parsejsonCTmovieObject(finalJsonBody, position);
 
@@ -259,8 +249,6 @@ public class MainActivity extends AppCompatActivity {
 
         final Snackbar mysnackbar = Snackbar.make(findViewById(R.id.container), event.message,
                 Snackbar.LENGTH_INDEFINITE);
-
-
         mysnackbar.setAction("Retry", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
