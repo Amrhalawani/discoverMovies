@@ -22,3 +22,7 @@ Retrofit,
 Picasso,
 eventBus.
 # ScreenShots
+
+
+![alt text](https://github.com/Amrhalawani/discoverMovies/blob/master/bc0dc31c-2117-4b04-b845-2292c85996c7.jfif
+)![alt text]
