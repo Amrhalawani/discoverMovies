@@ -25,4 +25,10 @@ eventBus.
 
 
 ![alt text](https://github.com/Amrhalawani/discoverMovies/blob/master/bc0dc31c-2117-4b04-b845-2292c85996c7.jfif
-)![alt text]
+)
+
+![alt text](https://github.com/Amrhalawani/discoverMovies/blob/master/a25ca07a-3eda-496a-977e-435a35cf8fb9.jfif)
+
+![alt text](https://github.com/Amrhalawani/discoverMovies/blob/master/e9fefccd-dba8-4bae-988a-64ba9b9a529f.jfif)
+
+![alt text](https://github.com/Amrhalawani/discoverMovies/blob/master/f7edc6f5-0463-475d-b74b-048091c9b815.jfif)
