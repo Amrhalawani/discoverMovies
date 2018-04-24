@@ -24,8 +24,7 @@ eventBus.
 # ScreenShots
 
 
-![alt text](https://github.com/Amrhalawani/discoverMovies/blob/master/bc0dc31c-2117-4b04-b845-2292c85996c7.jfif
-?raw=true "Title")
+![alt text](https://github.com/Amrhalawani/discoverMovies/blob/master/bc0dc31c-2117-4b04-b845-2292c85996c7.jfif?raw=true "Title")
 
 ![alt text](https://github.com/Amrhalawani/discoverMovies/blob/master/a25ca07a-3eda-496a-977e-435a35cf8fb9.jfif)
 
